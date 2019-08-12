@@ -14,6 +14,8 @@ public class Main {
             sum += Integer.parseInt(arg);
         }
         System.out.println("Sum of arguments is " + sum);
+
+
     }
 
 }

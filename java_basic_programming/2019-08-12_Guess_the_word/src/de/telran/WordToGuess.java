@@ -87,4 +87,8 @@ public class WordToGuess {
                 "array length=" + guessed.length +
                 '}';
     }
+
+    public boolean checkIfGuessed() {
+        return false;
+    }
 }

@@ -42,6 +42,16 @@ public class Word {
         }
     }
 
+    public boolean openWord(String word) {
+        if (this.word.equals(word)) {
+            for (int i = 0; i < guessed.length; i++) {
+                guessed[i] = true;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public String getWord() {
         return word;
     }

@@ -13,5 +13,7 @@ public class Main {
         System.out.println(word.getWordWithStars());
         word.openLetter('z');
         System.out.println(word.getWordWithStars());
+        word.openWord("apple");
+        System.out.println(word.getWordWithStars());
     }
 }

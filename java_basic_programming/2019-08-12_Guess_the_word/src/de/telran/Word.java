@@ -1,63 +1,28 @@
 package de.telran;
 
 public class Word {
-
     private String word;
     private String description;
-    private boolean[] guessed;
-
 
     public Word(String word, String description) {
         this.word = word;
         this.description = description;
-        this.guessed = new boolean[word.length()];
-    }
-
-
-    public String getWordWithStars() {
-        StringBuilder wordWithStars = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            if (guessed[i]) {
-                wordWithStars.append(word.charAt(i));
-            } else {
-                wordWithStars.append("*");
-            }
-        }
-        return wordWithStars.toString();
-    }
-
-    public boolean hasChar(char ch) {
-        for (char currentChar: word.toCharArray()) {
-            if (ch == currentChar)
-                return true;
-        }
-        return false;
-    }
-
-    public void openLetter(char ch) {
-        for (int i = 0; i < word.length(); i++) {
-            if (ch == word.charAt(i)) {
-                guessed[i] = true;
-            }
-        }
-    }
-
-    public boolean openWord(String word) {
-        if (this.word.equals(word)) {
-            for (int i = 0; i < guessed.length; i++) {
-                guessed[i] = true;
-            }
-            return true;
-        }
-        return false;
     }
 
     public String getWord() {
         return word;
     }
 
+    public void setWord(String word) {
+        this.word = word;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -84,7 +49,6 @@ public class Word {
         return "Word{" +
                 "word='" + word + '\'' +
                 ", description='" + description + '\'' +
-                "array length=" + guessed.length +
                 '}';
     }
 }

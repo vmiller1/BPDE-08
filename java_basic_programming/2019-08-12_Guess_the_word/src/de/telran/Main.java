@@ -6,8 +6,12 @@ public class Main {
 
         Word word = new Word("apple", "Fruit");
         System.out.println(word);
-
         System.out.println(word.getWordWithStars());
-
+        word.openLetter('p');
+        System.out.println(word.getWordWithStars());
+        word.openLetter('e');
+        System.out.println(word.getWordWithStars());
+        word.openLetter('z');
+        System.out.println(word.getWordWithStars());
     }
 }

@@ -4,27 +4,15 @@ public class Word {
 
     private String word;
     private String description;
-    private boolean[] guessed = {true, false, false, true, false};
+    private boolean[] guessed;
 
 
     public Word(String word, String description) {
         this.word = word;
         this.description = description;
-        //this.guessed = new boolean[word.length()];
+        this.guessed = new boolean[word.length()];
     }
 
-    // Better implementation with StringBuilder see below
-    /*public String getWordWithStars() {
-        String wordWithStars = "";
-        for (int i = 0; i < word.length(); i++) {
-            if (guessed[i]) {
-                wordWithStars +=  word.charAt(i);
-            } else {
-                wordWithStars +=  "*";
-            }
-        }
-        return wordWithStars;
-    }*/
 
     public String getWordWithStars() {
         StringBuilder wordWithStars = new StringBuilder();
@@ -44,6 +32,14 @@ public class Word {
                 return true;
         }
         return false;
+    }
+
+    public void openLetter(char ch) {
+        for (int i = 0; i < word.length(); i++) {
+            if (ch == word.charAt(i)) {
+                guessed[i] = true;
+            }
+        }
     }
 
     public String getWord() {

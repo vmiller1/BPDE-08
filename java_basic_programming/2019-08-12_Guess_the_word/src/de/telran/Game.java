@@ -32,9 +32,10 @@ public class Game {
                 //letter
                 char letterFromPlayer = askPlayerALetter();
                 if (wordToGuess.hasChar(letterFromPlayer)) {
+                    points += 100;
                     wordToGuess.openLetter(letterFromPlayer);
                     informPlayerAboutSuccess(letterFromPlayer);
-                    printNumberOfTries(numberOfTries);
+                    printNumberOfTriesAndPoints(numberOfTries);
                     showMaskedWord(wordToGuess.getWordWithStars());
                     if (wordToGuess.checkIfGuessed()) {
                         informPlayerAboutWin();
@@ -43,20 +44,24 @@ public class Game {
                 } else {
                     numberOfTries--;
                     informPlayerAboutMistake(letterFromPlayer);
-                    printNumberOfTries(numberOfTries);
+                    printNumberOfTriesAndPoints(numberOfTries);
                     showMaskedWord(wordToGuess.getWordWithStars());
-                    if (numberOfTries == 0)
+                    if (numberOfTries == 0) {
+                        points = 0;
                         informPlayerAboutLose(wordToGuess.getWord());
+                    }
                 }
             } else {
                 //word
                 String wordFromPlayer = askPlayerAWord();
                 if (wordToGuess.getWord().equals(wordFromPlayer)) {
+                    points +=300;
                     informPlayerAboutWin();
                     playerWon = true;
                 } else {
-                    informPlayerAboutLose(wordToGuess.getWord());
                     numberOfTries = 0;
+                    points = 0;
+                    informPlayerAboutLose(wordToGuess.getWord());
                 }
             }
         }
@@ -71,6 +76,7 @@ public class Game {
         System.out.println("You lost the game! The word was \""
                 + word.toUpperCase()
                 + "\"");
+        System.out.println("You won " + points + " points");
     }
 
     private void showMaskedWord(String wordWithStars) {
@@ -83,14 +89,16 @@ public class Game {
 
     private void informPlayerAboutWin() {
         System.out.println("You guessed the word! You won!");
+        System.out.println("You won " + points + " points");
     }
 
     private void informPlayerAboutSuccess(char letter) {
         System.out.println("Success! You've guessed the letter " + letter + "!");
     }
 
-    private void printNumberOfTries(int numberOfTries) {
+    private void printNumberOfTriesAndPoints(int numberOfTries) {
         System.out.println("Your number of tries is " + numberOfTries);
+        System.out.println("Your number of points is " + points);
     }
 
     private char askPlayerALetter() {

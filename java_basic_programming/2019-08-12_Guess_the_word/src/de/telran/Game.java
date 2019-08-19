@@ -1,6 +1,10 @@
 package de.telran;
 
+import java.util.Scanner;
+
 public class Game {
+
+    private final Scanner scanner = new Scanner(System.in);
 
     private WordRepository wordRepository;
     private WordToGuess wordToGuess;
@@ -27,36 +31,58 @@ public class Game {
                 char letterFromPlayer = askPlayerALetter();
                 if (wordToGuess.hasChar(letterFromPlayer)) {
                     wordToGuess.openLetter(letterFromPlayer);
-                    informPlayerAboutSuccess(numberOfTries);
+                    informPlayerAboutSuccess(letterFromPlayer);
+                    printNumberOfTries(numberOfTries);
+                    showMaskedWord(wordToGuess.getWordWithStars());
                     if (wordToGuess.checkIfGuessed()) {
                         informPlayerAboutWin();
                         playerWon = true;
                     }
                 } else {
                     numberOfTries--;
-                    informPlayerAboutMistake(numberOfTries);
+                    informPlayerAboutMistake(letterFromPlayer);
+                    printNumberOfTries(numberOfTries);
+                    showMaskedWord(wordToGuess.getWordWithStars());
+                    if (numberOfTries == 0)
+                        informPlayerAboutLose(wordToGuess.getWord());
                 }
             }
         }
+
     }
 
-    private void informPlayerAboutMistake(int numberOfTries) {
+    private void informPlayerAboutLose(String word) {
+        System.out.println("You lost the game! The word was \""
+                + word.toUpperCase()
+                + "\"");
+    }
 
+    private void showMaskedWord(String wordWithStars) {
+        System.out.println(wordWithStars);
+    }
+
+    private void informPlayerAboutMistake(char letter) {
+        System.out.println("There is no such a letter " + letter + "!");
     }
 
     private void informPlayerAboutWin() {
-
+        System.out.println("You guessed the word! You won!");
     }
 
-    private void informPlayerAboutSuccess(int numberOfTries) {
+    private void informPlayerAboutSuccess(char letter) {
+        System.out.println("Success! You've guessed the letter " + letter + "!");
+    }
 
+    private void printNumberOfTries(int numberOfTries) {
+        System.out.println("Your number of tries is " + numberOfTries);
     }
 
     private char askPlayerALetter() {
-        return 0;
+        System.out.print("Please input a letter:");
+        return scanner.nextLine().toLowerCase().charAt(0);
     }
 
     private boolean askPlayerLetterOrWord() {
-        return false;
+        return true;
     }
 }

@@ -89,6 +89,9 @@ public class WordToGuess {
     }
 
     public boolean checkIfGuessed() {
-        return false;
+        for (boolean b: guessed) {
+            if (!b) return false;
+        }
+        return true;
     }
 }

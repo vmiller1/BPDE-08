@@ -9,6 +9,8 @@ public class Game {
     private WordRepository wordRepository;
     private WordToGuess wordToGuess;
 
+    private int points;
+
 
     public Game() {
         wordRepository = new WordRepository();
@@ -46,9 +48,23 @@ public class Game {
                     if (numberOfTries == 0)
                         informPlayerAboutLose(wordToGuess.getWord());
                 }
+            } else {
+                //word
+                String wordFromPlayer = askPlayerAWord();
+                if (wordToGuess.getWord().equals(wordFromPlayer)) {
+                    informPlayerAboutWin();
+                    playerWon = true;
+                } else {
+                    informPlayerAboutLose(wordToGuess.getWord());
+                    numberOfTries = 0;
+                }
             }
         }
+    }
 
+    private String askPlayerAWord() {
+        System.out.print("Please input a word:");
+        return scanner.nextLine().toLowerCase();
     }
 
     private void informPlayerAboutLose(String word) {
@@ -83,6 +99,7 @@ public class Game {
     }
 
     private boolean askPlayerLetterOrWord() {
-        return true;
+        System.out.print("Word (w) or letter(l)?");
+        return scanner.nextLine().toLowerCase().charAt(0) != 'w';
     }
 }

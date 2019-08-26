@@ -2,15 +2,16 @@ package de.telran;
 
 public class Game {
 
-    private final GameState gameState = new GameState();
+    private final GameState gameState;
     private final PlayerInteraction playerInteraction = new PlayerInteraction();
 
     private WordRepository wordRepository;
     private WordToGuess wordToGuess;
 
 
-    public Game() {
+    public Game(GameState gameState) {
         wordRepository = new WordRepository();
+        this.gameState = gameState;
     }
 
     public void startNewGame() {

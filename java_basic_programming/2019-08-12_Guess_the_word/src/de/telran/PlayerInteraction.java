@@ -48,4 +48,9 @@ public class PlayerInteraction {
         System.out.println(wordToGuess.getDescription());
         System.out.println(wordToGuess.getWordWithStars());
     }
+
+    void informPlayerAboutWin(int points) {
+        System.out.println("You guessed the word! You won!");
+        System.out.println("You won " + points + " points");
+    }
 }

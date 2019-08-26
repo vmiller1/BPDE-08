@@ -31,7 +31,7 @@ public class Game {
         String wordFromPlayer = playerInteraction.askPlayerAWord(this);
         if (wordToGuess.getWord().equals(wordFromPlayer)) {
             gameState.playerGuessedWordAndWon();
-            informPlayerAboutWin();
+            playerInteraction.informPlayerAboutWin(gameState.getPoints());
         } else {
             gameState.playerGuessedWrongAndLost();
             playerInteraction.informPlayerAboutLose(wordToGuess.getWord(),gameState.getPoints());
@@ -44,31 +44,26 @@ public class Game {
             gameState.guessedLetter();
             wordToGuess.openLetter(letterFromPlayer);
             playerInteraction.informPlayerAboutSuccess(letterFromPlayer);
-            printNumberOfTriesAndPoints(gameState.getNumberOfTries());
+            printNumberOfTriesAndPoints(gameState.getNumberOfTries(), gameState.getPoints());
             playerInteraction.showMaskedWord(wordToGuess.getWordWithStars());
             if (wordToGuess.checkIfGuessed()) {
-                informPlayerAboutWin();
-                gameState.setPlayerWon(true);
+                playerInteraction.informPlayerAboutWin(gameState.getPoints());
+                gameState.playerWon();
             }
         } else {
             gameState.guessedLetterWrong();
             playerInteraction.informPlayerAboutMistake(letterFromPlayer);
-            printNumberOfTriesAndPoints(gameState.getNumberOfTries());
+            printNumberOfTriesAndPoints(gameState.getNumberOfTries(), gameState.getPoints());
             playerInteraction.showMaskedWord(wordToGuess.getWordWithStars());
             if (gameState.getNumberOfTries() == 0) {
-                gameState.setPoints(0);
+                gameState.playerLost();
                 playerInteraction.informPlayerAboutLose(wordToGuess.getWord(), gameState.getPoints());
             }
         }
     }
 
-    private void informPlayerAboutWin() {
-        System.out.println("You guessed the word! You won!");
-        System.out.println("You won " + gameState.getPoints() + " points");
-    }
-
-    private void printNumberOfTriesAndPoints(int numberOfTries) {
+    private void printNumberOfTriesAndPoints(int numberOfTries, int points) {
         System.out.println("Your number of tries is " + numberOfTries);
-        System.out.println("Your number of points is " + gameState.getPoints());
+        System.out.println("Your number of points is " + points);
     }
 }

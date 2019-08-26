@@ -2,57 +2,51 @@ package de.telran;
 
 public class GameState {
     private int points;
+    private int numberOfTries = 3;
+    private boolean playerWon = false;
 
     public int getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    private int numberOfTries = 3;
-
     public int getNumberOfTries() {
         return numberOfTries;
     }
 
-    public void setNumberOfTries(int numberOfTries) {
-        this.numberOfTries = numberOfTries;
-    }
-
-    private boolean playerWon = false;
-
     public boolean isPlayerWon() {
         return playerWon;
-    }
-
-    public void setPlayerWon(boolean playerWon) {
-        this.playerWon = playerWon;
     }
 
     public GameState() {
     }
 
     public void playerGuessedWordAndWon() {
-        setPoints(getPoints() + 300);
-        setPlayerWon(true);
+        points += 300;
+        playerWon = true;
     }
 
     public void playerGuessedWrongAndLost() {
-        setNumberOfTries(0);
-        setPoints(0);
+        numberOfTries = 0;
+        points = 0;
     }
 
     public void guessedLetter() {
-        setPoints(getPoints() + 100);
+        points += 100;
     }
 
     public void guessedLetterWrong() {
-        setNumberOfTries(getNumberOfTries() - 1);
+        numberOfTries--;
     }
 
     public boolean isGameOn() {
         return getNumberOfTries() > 0 && !isPlayerWon();
+    }
+
+    public void playerWon() {
+        playerWon = true;
+    }
+
+    public void playerLost() {
+        points = 0;
     }
 }

@@ -1,4 +1,4 @@
-package de.telran;
+package de.telran.game.word;
 
 import java.util.Random;
 

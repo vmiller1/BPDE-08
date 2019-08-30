@@ -1,4 +1,4 @@
-package de.telran;
+package de.telran.game.word;
 
 public class WordToGuess {
 

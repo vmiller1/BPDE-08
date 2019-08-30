@@ -1,4 +1,4 @@
-package de.telran;
+package de.telran.game.state;
 
 public interface GameState {
     int getPoints();

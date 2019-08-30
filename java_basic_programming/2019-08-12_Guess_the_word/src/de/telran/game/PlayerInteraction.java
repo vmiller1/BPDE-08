@@ -1,4 +1,6 @@
-package de.telran;
+package de.telran.game;
+
+import de.telran.game.word.WordToGuess;
 
 import java.util.Scanner;
 

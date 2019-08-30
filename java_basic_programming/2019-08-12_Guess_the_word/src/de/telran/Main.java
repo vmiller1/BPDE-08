@@ -1,6 +1,7 @@
 package de.telran;
 
 import de.telran.game.Game;
+import de.telran.game.state.AbstractGameState;
 import de.telran.game.state.GameState;
 import de.telran.game.state.LevelDifficultyEasy;
 import de.telran.game.state.LevelDifficultyHard;
@@ -11,12 +12,19 @@ public class Main {
 
     /*
     HW:
-    implement methods of LevelDifficultyHard:
-    - 3 tries
-    - if player wins from the 1st try, he gets additionally 500 points
-    - if player wins from the 2nd try, he gets additionally 200 points
+    implement new difficulty level LevelDifficultySuperEasy:
+    - 2 tries to guess a word
+    - 5 tries to make a mistake with letter
+    - 3 guessed letters in a row  - +300 points
 
-    - Allow to the user to choose the difficulty level when the game starts
+    Add validation and error message if user enters difficulty level
+    that does not exist. Retry to enter the difficulty level.
+
+    Possible features:
+    - open any letter in the word
+    - random number of points from predefined list (50, 100, 200, 300)
+    - if there is more then 1 same guessed letter in the word,
+    multiply points by number of the same guessed letters
      */
 
     public static void main(String[] args) {

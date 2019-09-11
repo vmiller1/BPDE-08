@@ -29,16 +29,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         System.out.print("Please choose difficulty level (1 - easy, 2 - hard):");
         Scanner scanner = new Scanner(System.in);
 
-        GameState gameState;
-        if (scanner.nextInt() == 1) {
-            gameState = new LevelDifficultyEasy();
-        } else {
-            gameState = new LevelDifficultyHard();
+        GameState gameState = null;
+
+        while (gameState == null) {
+            switch (scanner.nextInt()) {
+                case 1:
+                    gameState = new LevelDifficultyEasy();
+                    break;
+                case 2:
+                    gameState = new LevelDifficultyHard();
+                    break;
+                default:
+                    System.out.println("You entered the wrong difficulty level. Please try again.");
+            }
         }
+
         Game game = new Game(gameState);
         game.startNewGame();
 

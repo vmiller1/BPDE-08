@@ -20,9 +20,8 @@ public abstract class AbstractGameState implements GameState {
     public abstract void playerGuessedWordAndWon();
 
     @Override
-    public void playerGuessedWrongAndLost() {
-        numberOfTries = 0;
-        points = 0;
+    public void playerGuessedWrong() {
+        playerLost();
     }
 
     @Override
@@ -47,6 +46,7 @@ public abstract class AbstractGameState implements GameState {
 
     @Override
     public void playerLost() {
+        numberOfTries = 0;
         points = 0;
     }
 

@@ -55,4 +55,8 @@ public class PlayerInteraction {
         System.out.println("You guessed the word! You won!");
         System.out.println("You won " + points + " points");
     }
+
+    public void informPlayerAboutWrongWord() {
+        System.out.println("You entered wrong word!");
+    }
 }

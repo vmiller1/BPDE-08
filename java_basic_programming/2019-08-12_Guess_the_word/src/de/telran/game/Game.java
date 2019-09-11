@@ -40,8 +40,10 @@ public class Game {
             gameState.playerGuessedWordAndWon();
             playerInteraction.informPlayerAboutWin(gameState.getPoints());
         } else {
-            gameState.playerGuessedWrongAndLost();
-            playerInteraction.informPlayerAboutLose(wordToGuess.getWord(),gameState.getPoints());
+            gameState.playerGuessedWrong();
+            playerInteraction.informPlayerAboutWrongWord();
+            if (!gameState.isGameOn())
+                playerInteraction.informPlayerAboutLose(wordToGuess.getWord(),gameState.getPoints());
         }
     }
 

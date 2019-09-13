@@ -4,6 +4,8 @@ public class LevelDifficultySuperEasy extends AbstractGameState {
 
     private int numberOfTriesToGuessWord = 2;
 
+    private int numberOfGuessedLettersInRow = 0;
+
     public LevelDifficultySuperEasy() {
         super();
         numberOfTries = 5;
@@ -20,5 +22,19 @@ public class LevelDifficultySuperEasy extends AbstractGameState {
     public void playerGuessedWordAndWon() {
         playerWon = true;
         points += 100;
+    }
+
+    @Override
+    public void guessedLetter() {
+        super.guessedLetter();
+        numberOfGuessedLettersInRow++;
+        if (numberOfGuessedLettersInRow % 3 == 0)
+            points += 300;
+    }
+
+    @Override
+    public void guessedLetterWrong() {
+        super.guessedLetterWrong();
+        numberOfGuessedLettersInRow = 0;
     }
 }

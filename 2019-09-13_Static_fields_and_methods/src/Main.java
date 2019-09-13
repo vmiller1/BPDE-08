@@ -1,13 +1,16 @@
-import static logger.Logger.log;
+import logger.Logger;
+
 import java.lang.Math;
 
 public class Main {
 
     public static void main(String[] args) {
-        log(CircleUtils.PI);
-        log(CircleUtils.circleLength(5));
-        log(CircleUtils.circleArea(5));
-        log(CircleUtils.squareEquivalent(1));
-        log(Math.sqrt(CircleUtils.PI));
+        Logger log = Logger.getLogger(Main.class);
+
+        log.info(CircleUtils.PI);
+        log.info(CircleUtils.circleLength(5));
+        log.info(CircleUtils.circleArea(5));
+        log.info(CircleUtils.squareEquivalent(1));
+        log.info(Math.sqrt(CircleUtils.PI));
     }
 }

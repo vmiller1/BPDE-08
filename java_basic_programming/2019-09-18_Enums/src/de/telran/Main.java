@@ -1,5 +1,13 @@
 package de.telran;
 
+/*
+    HW: review code of Guess the word project,
+    replace difficulty levels switch/case by enums,
+    store in the enum members the main differences between
+    difficulty levels.
+    Create pull request and send it!
+ */
+
 public class Main {
 
     public static void main(String[] args) {

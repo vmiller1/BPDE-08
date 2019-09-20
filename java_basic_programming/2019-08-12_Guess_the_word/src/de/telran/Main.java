@@ -2,6 +2,7 @@ package de.telran;
 
 import de.telran.game.Game;
 import de.telran.game.LevelEnum;
+import de.telran.game.WrongLevelCodeException;
 import de.telran.game.state.*;
 
 import java.util.Scanner;
@@ -38,18 +39,20 @@ public class Main {
         GameState gameState = null;
 
         while (gameState == null) {
-            switch (getLevelByLevelCode(scanner.nextInt())) {
-                case SUPER_EASY:
-                    gameState = new LevelDifficultySuperEasy();
-                    break;
-                case EASY:
-                    gameState = new LevelDifficultyEasy();
-                    break;
-                case HARD:
-                    gameState = new LevelDifficultyHard();
-                    break;
-                default:
-                    System.out.println("You entered the wrong difficulty level. Please try again.");
+            try {
+                switch (getLevelByLevelCode(scanner.nextInt())) {
+                    case SUPER_EASY:
+                        gameState = new LevelDifficultySuperEasy();
+                        break;
+                    case EASY:
+                        gameState = new LevelDifficultyEasy();
+                        break;
+                    case HARD:
+                        gameState = new LevelDifficultyHard();
+                        break;
+                }
+            } catch (WrongLevelCodeException e) {
+                System.out.println("You entered the wrong difficulty level. Please try again.");
             }
         }
         return gameState;

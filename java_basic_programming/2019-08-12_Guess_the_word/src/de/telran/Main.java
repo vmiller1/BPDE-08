@@ -40,18 +40,10 @@ public class Main {
 
         while (gameState == null) {
             try {
-                switch (getLevelByLevelCode(scanner.nextInt())) {
-                    case SUPER_EASY:
-                        gameState = new LevelDifficultySuperEasy();
-                        break;
-                    case EASY:
-                        gameState = new LevelDifficultyEasy();
-                        break;
-                    case HARD:
-                        gameState = new LevelDifficultyHard();
-                        break;
-                }
-            } catch (WrongLevelCodeException e) {
+                gameState = (GameState) getLevelByLevelCode(scanner.nextInt())
+                        .getClazz()
+                        .newInstance();
+            } catch (WrongLevelCodeException | InstantiationException | IllegalAccessException e) {
                 System.out.println("You entered the wrong difficulty level. Please try again.");
             }
         }

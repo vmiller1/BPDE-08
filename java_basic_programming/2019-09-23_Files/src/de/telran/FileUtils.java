@@ -5,22 +5,16 @@ import java.io.*;
 public class FileUtils {
 
     public static void copyBinFile(String fileName, String newFileName) throws IOException {
-        FileInputStream in = null;
-        FileOutputStream out = null;
 
-        try {
-            in = new FileInputStream(fileName);
-            out = new FileOutputStream(newFileName);
-
+        try (
+                FileInputStream in = new FileInputStream(fileName);
+                FileOutputStream out = new FileOutputStream(newFileName)
+        ) {
             int c;
-            while ((c = in.read()) != -1 ) {
+            while ((c = in.read()) != -1) {
                 out.write(c);
+                System.out.println("'" + (char) c + "': " + c);
             }
-        } finally {
-            if (in != null)
-                in.close();
-            if (out !=null)
-                out.close();
         }
     }
 
@@ -35,6 +29,7 @@ public class FileUtils {
             int c;
             while ((c = in.read()) != -1) {
                 out.write(c);
+                out.write(" ");
                 System.out.println("'" + (char) c + "': " + c);
             }
         } finally {

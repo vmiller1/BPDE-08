@@ -1,9 +1,6 @@
 package de.telran;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class FileUtils {
 
@@ -25,6 +22,26 @@ public class FileUtils {
             if (out !=null)
                 out.close();
         }
+    }
 
+    public static void copyTextFile(String fileName, String newFileName) throws IOException {
+        FileReader in = null;
+        FileWriter out = null;
+
+        try {
+            in = new FileReader(fileName);
+            out = new FileWriter(newFileName);
+
+            int c;
+            while ((c = in.read()) != -1) {
+                out.write(c);
+                System.out.println("'" + (char) c + "': " + c);
+            }
+        } finally {
+            if (in != null)
+                in.close();
+            if (out != null)
+                out.close();
+        }
     }
 }
